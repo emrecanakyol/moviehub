@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
 import SplashScreen from 'react-native-splash-screen';
-import { NavigationContainer } from '@react-navigation/native';
 import Stack from './navigators/Stack';
+import { Provider } from 'react-redux';
+import store from './store/store';
 
 const App = () => {
 
@@ -10,9 +11,9 @@ const App = () => {
   }, []);
 
   return (
-    <NavigationContainer>
+    <Provider store={store}>
       <Stack />
-    </NavigationContainer>
+    </Provider>
   )
 }
 

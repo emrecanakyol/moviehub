@@ -1,6 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, FlatList, Button, Image, ActivityIndicator } from 'react-native';
-import { GetMovies } from '../../../api';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchMovies, setCurrentPage } from '../../../store/slice/moviesSlice';
+import { AppDispatch } from '../../../store/store';
+
+interface RootState {
+    movies: {
+        movies: Movie[];
+        loading: boolean;
+        hasNextPage: boolean;
+        currentPage: number;
+    };
+}
 
 interface Movie {
     movie_id: number;
@@ -10,40 +21,24 @@ interface Movie {
     poster_path: string;
 }
 
-interface MovieApiResponse {
-    data: Movie[];
-    links: {
-        next_page_url: string | null;
-    };
-}
+const MoviesList: React.FC = () => {
+    const dispatch = useDispatch<AppDispatch>();
+    const { movies, loading, hasNextPage, currentPage } = useSelector((state: RootState) => state.movies);  // Redux state'ten verileri çekiyoruz
 
-const index: React.FC = () => {
-    const [movies, setMovies] = useState<Movie[]>([]);
-    const [loading, setLoading] = useState<boolean>(false);
-    const [currentPage, setCurrentPage] = useState<number>(1);
-    const [hasNextPage, setHasNextPage] = useState<boolean>(true);
-
-    const fetchMovies = async (page: number) => {
-        try {
-            setLoading(true);
-            const response: MovieApiResponse = await GetMovies(page);
-            const newMovies = response.data;
-            setMovies((prevMovies) => [...prevMovies, ...newMovies]);
-            setHasNextPage(response.links.next_page_url !== null);
-            setLoading(false);
-        } catch (error) {
-            console.error('Error fetching movies:', error);
-            setLoading(false);
+    console.log(movies)
+    const loadMovies = () => {
+        if (hasNextPage && !loading) {
+            dispatch(fetchMovies(currentPage));
         }
     };
 
     useEffect(() => {
-        fetchMovies(currentPage);
+        loadMovies();
     }, [currentPage]);
 
     const loadMoreMovies = () => {
         if (hasNextPage && !loading) {
-            setCurrentPage((prevPage) => prevPage + 1);
+            dispatch(setCurrentPage(currentPage + 1));
         }
     };
 
@@ -73,9 +68,8 @@ const index: React.FC = () => {
                     ) : null
                 }
             />
-
         </View>
     );
 };
 
-export default index;
+export default MoviesList;

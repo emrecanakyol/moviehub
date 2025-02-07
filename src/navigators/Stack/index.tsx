@@ -8,6 +8,7 @@ import Favorites from '../../screens/App/Favorites';
 import Search from '../../screens/App/Search';
 import Profile from '../../screens/App/Profile';
 import BottomTabs from '../BottomTabs';
+import { NavigationContainer } from '@react-navigation/native';
 
 export const BOTTOM_TABS = "BottomTabs";
 export const ONBOARDINGONE = "OnBoardingOne";
@@ -22,20 +23,22 @@ const Stack = createStackNavigator();
 
 const StackNavigator = () => {
     return (
-        <Stack.Navigator
-            initialRouteName={BOTTOM_TABS}
-            screenOptions={{
-                headerShown: false,
-            }}>
-            <Stack.Screen name={ONBOARDINGONE} component={OnBoardingOne} />
-            <Stack.Screen name={ONBOARDINGTWO} component={OnBoardingTwo} />
-            <Stack.Screen name={ONBOARDINGTHREE} component={OnBoardingThree} />
-            <Stack.Screen name={BOTTOM_TABS} component={BottomTabs} />
-            <Stack.Screen name={HOME} component={Home} />
-            <Stack.Screen name={FAVORITES} component={Favorites} />
-            <Stack.Screen name={SEARCH} component={Search} />
-            <Stack.Screen name={PROFILE} component={Profile} />
-        </Stack.Navigator>
+        <NavigationContainer>
+            <Stack.Navigator
+                initialRouteName={BOTTOM_TABS}
+                screenOptions={{
+                    headerShown: false,
+                }}>
+                <Stack.Screen name={ONBOARDINGONE} component={OnBoardingOne} />
+                <Stack.Screen name={ONBOARDINGTWO} component={OnBoardingTwo} />
+                <Stack.Screen name={ONBOARDINGTHREE} component={OnBoardingThree} />
+                <Stack.Screen name={BOTTOM_TABS} component={BottomTabs} />
+                <Stack.Screen name={HOME} component={Home} />
+                <Stack.Screen name={FAVORITES} component={Favorites} />
+                <Stack.Screen name={SEARCH} component={Search} />
+                <Stack.Screen name={PROFILE} component={Profile} />
+            </Stack.Navigator>
+        </NavigationContainer>
     )
 }
 
