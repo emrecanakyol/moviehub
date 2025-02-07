@@ -4,25 +4,37 @@ import Home from '../../screens/App/Home';
 import OnBoardingOne from '../../screens/Auth/OnBoardings/OnBoardingOne';
 import OnBoardingTwo from '../../screens/Auth/OnBoardings/OnBoardingTwo';
 import OnBoardingThree from '../../screens/Auth/OnBoardings/OnBoardingThree';
+import Favorites from '../../screens/App/Favorites';
+import Search from '../../screens/App/Search';
+import Profile from '../../screens/App/Profile';
+import BottomTabs from '../BottomTabs';
 
-export const HOME = "Home";
+export const BOTTOM_TABS = "BottomTabs";
 export const ONBOARDINGONE = "OnBoardingOne";
 export const ONBOARDINGTWO = "OnBoardingTwo";
 export const ONBOARDINGTHREE = "OnBoardingThree";
+export const HOME = "Home";
+export const FAVORITES = "Favorites";
+export const SEARCH = "Search";
+export const PROFILE = "Profile";
 
 const Stack = createStackNavigator();
 
 const StackNavigator = () => {
     return (
         <Stack.Navigator
-            initialRouteName={ONBOARDINGONE}
+            initialRouteName={BOTTOM_TABS}
             screenOptions={{
                 headerShown: false,
             }}>
             <Stack.Screen name={ONBOARDINGONE} component={OnBoardingOne} />
             <Stack.Screen name={ONBOARDINGTWO} component={OnBoardingTwo} />
             <Stack.Screen name={ONBOARDINGTHREE} component={OnBoardingThree} />
+            <Stack.Screen name={BOTTOM_TABS} component={BottomTabs} />
             <Stack.Screen name={HOME} component={Home} />
+            <Stack.Screen name={FAVORITES} component={Favorites} />
+            <Stack.Screen name={SEARCH} component={Search} />
+            <Stack.Screen name={PROFILE} component={Profile} />
         </Stack.Navigator>
     )
 }

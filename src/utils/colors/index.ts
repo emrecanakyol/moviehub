@@ -1,8 +1,11 @@
 export const colors = {
     WHITE_COLOR: '#FFF',
-    BLACK_COLOR: "#000",
+    BLACK_COLOR: "#0B0E11",
+    MAIN_COLOR: "#181A20",
     RED_COLOR: "#E82251",
     TEXT_MAIN_COLOR: '#414141',
     TEXT_DESCRIPTION_COLOR: '#525252',
     STROKE_COLOR: '#E8E8E8',
+    GRAY_COLOR: "#B0B0B0",
+    LIGHT_GRAY: "#D3D3D3",
 }

@@ -5,7 +5,7 @@ import { colors } from '../../../utils/colors'
 const index = () => {
     return (
         <View style={{ flex: 1, backgroundColor: colors.MAIN_COLOR }}>
-            <Text>Home</Text>
+            <Text>Profile</Text>
         </View>
     )
 }
