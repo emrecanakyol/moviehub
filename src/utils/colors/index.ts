@@ -1,0 +1,8 @@
+export const colors = {
+    WHITE_COLOR: '#FFF',
+    BLACK_COLOR: "#000",
+    RED_COLOR: "#E82251",
+    TEXT_MAIN_COLOR: '#414141',
+    TEXT_DESCRIPTION_COLOR: '#525252',
+    STROKE_COLOR: '#E8E8E8',
+}
