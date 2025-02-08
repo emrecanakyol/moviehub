@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from 'react-native-paper';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { colors } from '../../utils/colors';
 import { responsive } from '../../utils/responsive/responsive';
 
@@ -9,24 +9,31 @@ interface CustomButtonProps {
     style?: object;
     textStyle?: object;
     children?: React.ReactNode;
+    align?: 'flex-start' | 'center' | 'flex-end';
 }
 
-const CustomButton: React.FC<CustomButtonProps> = ({ onPress, style, textStyle, children }) => {
+const CustomButton: React.FC<CustomButtonProps> = ({ onPress, style, textStyle, children, align }) => {
     return (
-        <Button
-            mode="contained"
-            onPress={onPress}
-            style={[styles.button, style]}
-            labelStyle={[styles.text, textStyle]}
-        >
-            {children}
-        </Button>
+        <View style={[styles.container, align && { alignItems: align }]}>
+            <Button
+                mode="contained"
+                onPress={onPress}
+                style={[styles.button, style]}
+                labelStyle={[styles.text, textStyle]}
+            >
+                {children}
+            </Button>
+        </View>
     );
 };
 
 export default CustomButton;
 
 const styles = StyleSheet.create({
+    container: {
+        alignItems: "center",
+        marginVertical: responsive(10),
+    },
     button: {
         backgroundColor: colors.RED_COLOR,
         width: responsive(140),
