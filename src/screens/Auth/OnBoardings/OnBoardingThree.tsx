@@ -3,7 +3,7 @@ import { View, ImageBackground, Text } from 'react-native';
 import images from '../../../assets/images/images';
 import MHButton from '../../../components/MHButton';
 import { styles } from './styles';
-import { HOME } from '../../../navigators/Stack';
+import { BOTTOM_TABS, HOME } from '../../../navigators/Stack';
 import Dots from './Dots';
 
 type RootStackList = {
@@ -13,7 +13,7 @@ type RootStackList = {
 const OnBoardingThree = ({ navigation }: RootStackList) => {
 
     const handlePress = () => {
-        navigation.navigate(HOME)
+        navigation.navigate(BOTTOM_TABS)
     };
 
     return (

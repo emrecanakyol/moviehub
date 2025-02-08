@@ -25,7 +25,7 @@ const StackNavigator = () => {
     return (
         <NavigationContainer>
             <Stack.Navigator
-                initialRouteName={BOTTOM_TABS}
+                initialRouteName={ONBOARDINGONE}
                 screenOptions={{
                     headerShown: false,
                 }}>

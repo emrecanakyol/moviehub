@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
-import { View, FlatList, ActivityIndicator } from 'react-native';
+import React from 'react';
+import { View, FlatList } from 'react-native';
 import MHTitle from '../../../../../components/MHTitle';
 import MHMovies from '../../../../../components/Cards/MHMovies';
 import { styles } from './styles';
 import MHButton from '../../../../../components/MHButton';
+import MHLoading from '../../../../../components/MHLoading';
 
 interface Movie {
     movie_id: number;
@@ -22,26 +23,30 @@ const AllMovies: React.FC<AllMoviesProps> = ({ movies, loading, hasNextPage, loa
 
     return (
         <>
-            <MHTitle
-                title="Filmleri Keşfet"
-            // icon="chevron-right"
-            />
-            <FlatList
-                data={movies}
-                renderItem={({ item }) => <MHMovies movie={item} />}
-                keyExtractor={(item) => item.movie_id.toString()}
-                numColumns={2}
-                style={styles.container}
-                ListFooterComponent={
-                    loading ? (
-                        <ActivityIndicator size="large" color="#0000ff" />
-                    ) : hasNextPage && loading ? (
-                        <View style={styles.btnContainer}>
-                            <MHButton onPress={loadMoreMovies}>Daha Fazla</MHButton>
-                        </View>
-                    ) : null
-                }
-            />
+            {loading ? (<MHLoading />) : (
+                <>
+                    <MHTitle
+                        title="Filmleri Keşfet"
+                    // icon="chevron-right"
+                    />
+                    <FlatList
+                        data={movies}
+                        renderItem={({ item }) => <MHMovies movie={item} />}
+                        keyExtractor={(item) => item.movie_id.toString()}
+                        numColumns={2}
+                        style={styles.container}
+                        ListFooterComponent={
+                            loading ? (
+                                <MHLoading />
+                            ) : hasNextPage && loading ? (
+                                <View style={styles.btnContainer}>
+                                    <MHButton onPress={loadMoreMovies}>Daha Fazla</MHButton>
+                                </View>
+                            ) : null
+                        }
+                    />
+                </>
+            )}
         </>
     );
 };
