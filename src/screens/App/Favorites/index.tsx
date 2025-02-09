@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { FlatList, View, Text, ActivityIndicator, Image } from 'react-native';
-import { Button, Card } from 'react-native-paper';
+import { FlatList, View, Text, ActivityIndicator } from 'react-native';
 import useFavorites from '../../../hooks/useFavorites';
 import { colors } from '../../../utils/colors';
-import { styles } from './styles';
 import { useFocusEffect } from '@react-navigation/native';
-import MHButton from '../../../components/MHButton';
+import { styles } from './style';
+import FavoritesCard from './components/FavoritesCard';
 
 const Favorites = () => {
     const { favorites, toggleFavorite, loading, loadFavorites } = useFavorites();
@@ -24,24 +23,12 @@ const Favorites = () => {
     );
 
     const renderItem = ({ item }: any) => (
-        <Card style={styles.card}>
-            <Card.Content>
-                <Text style={styles.title}>{item.original_title}</Text>
-                <Image
-                    source={{ uri: item.poster_path }}
-                    style={styles.poster}
-                />
-                <MHButton
-                    icon="heart-off"
-                    onPress={() => toggleFavorite(item)}
-                    style={styles.removeButton}
-                    loading={loading}
-                    disabled={loading}
-                >
-                    Kaldır
-                </MHButton>
-            </Card.Content>
-        </Card>
+        <FavoritesCard
+            item={item}
+            onRemove={() => toggleFavorite(item)}
+            loading={loading}
+            disabled={loading}
+        />
     );
 
     return (
