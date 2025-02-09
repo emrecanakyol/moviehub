@@ -4,7 +4,6 @@ import { Card, Paragraph } from 'react-native-paper';
 import { styles } from './styles';
 import { useNavigation } from '@react-navigation/native';
 import { MOVIES_DETAILS } from '../../../navigators/Stack';
-import { StackNavigationProp } from '@react-navigation/stack';
 
 interface Movie {
     movie_id: number;

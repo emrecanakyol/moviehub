@@ -27,7 +27,7 @@ const AllMovies: React.FC<AllMoviesProps> = ({ movies, loading, hasNextPage, loa
                 <>
                     <MHTitle
                         title="Filmleri Keşfet"
-                    // icon="chevron-right"
+                        icon="chevron-right"
                     />
                     <FlatList
                         data={movies}

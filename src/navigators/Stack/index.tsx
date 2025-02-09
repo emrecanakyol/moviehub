@@ -9,7 +9,8 @@ import Search from '../../screens/App/Search';
 import Profile from '../../screens/App/Profile';
 import BottomTabs from '../BottomTabs';
 import { NavigationContainer } from '@react-navigation/native';
-import MovieDetails from '../../screens/App/Home/components/MoviesDetails';
+import MovieDetails from '../../screens/App/MoviesDetails';
+
 
 export const BOTTOM_TABS = "BottomTabs";
 export const ONBOARDINGONE = "OnBoardingOne";

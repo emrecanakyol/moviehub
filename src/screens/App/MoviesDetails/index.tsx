@@ -3,7 +3,7 @@ import { ScrollView } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { RouteProp } from '@react-navigation/native';
 import { styles } from './style';
-import MHMoviesDetailsCard from '../../../../../components/Cards/MHMoviesDetailsCard';
+import MHMoviesDetailsCard from '../../../components/Cards/MHMoviesDetailsCard';
 
 interface Movie {
     movie_id: number;
