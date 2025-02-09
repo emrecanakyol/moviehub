@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
         width: "48%",
         margin: responsive(5),
         borderRadius: responsive(10),
-        backgroundColor: 'white',
+        backgroundColor: colors.WHITE_COLOR,
     },
     title: {
         fontSize: 16,

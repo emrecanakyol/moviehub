@@ -19,7 +19,7 @@ export const styles = StyleSheet.create({
     },
     card: {
         marginBottom: 10,
-        backgroundColor: '#222',
+        backgroundColor: colors.TEXT_MAIN_COLOR,
     },
     cardContent: {
         flexDirection: 'row',
@@ -33,6 +33,6 @@ export const styles = StyleSheet.create({
         marginRight: 10,
     },
     movieTitle: {
-        color: '#fff',
+        color: colors.WHITE_COLOR,
     },
 });

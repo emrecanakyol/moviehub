@@ -28,21 +28,21 @@ const styles = StyleSheet.create({
     },
     yearText: {
         fontSize: 14,
-        color: 'gray',
+        color: colors.GRAY_COLOR,
     },
     directorText: {
         fontSize: 14,
-        color: 'gray',
+        color: colors.GRAY_COLOR,
     },
     ratingText: {
         fontSize: 14,
-        color: 'green',
+        color: colors.GREEN_COLOR,
         fontWeight: 'bold',
     },
     overviewText: {
         marginTop: 10,
         fontSize: 14,
-        color: 'black',
+        color: colors.BLACK_COLOR,
     },
 });
 

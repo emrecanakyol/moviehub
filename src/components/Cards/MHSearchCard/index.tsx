@@ -9,7 +9,7 @@ interface MovieCardProps {
     item: { movie_id: number; original_title: string; poster_path: string };
 }
 
-const MovieCard: React.FC<MovieCardProps> = ({ item }) => {
+const SearchCard: React.FC<MovieCardProps> = ({ item }) => {
     const navigation = useNavigation<any>();
 
     return (
@@ -33,4 +33,4 @@ const MovieCard: React.FC<MovieCardProps> = ({ item }) => {
     );
 };
 
-export default MovieCard;
+export default SearchCard;

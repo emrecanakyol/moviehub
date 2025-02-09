@@ -8,4 +8,5 @@ export const colors = {
     STROKE_COLOR: '#E8E8E8',
     GRAY_COLOR: "#B0B0B0",
     LIGHT_GRAY: "#D3D3D3",
+    GREEN_COLOR: "#28A745",
 }
