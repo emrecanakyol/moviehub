@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, FlatList } from 'react-native';
 import MHTitle from '../../../../../components/MHTitle';
-import MHMovies from '../../../../../components/Cards/MHMovies';
+import MHMoviesCard from '../../../../../components/Cards/MHMoviesCard';
 import { styles } from './styles';
 import MHButton from '../../../../../components/MHButton';
 import MHLoading from '../../../../../components/MHLoading';
@@ -31,7 +31,7 @@ const AllMovies: React.FC<AllMoviesProps> = ({ movies, loading, hasNextPage, loa
                     />
                     <FlatList
                         data={movies}
-                        renderItem={({ item }) => <MHMovies movie={item} />}
+                        renderItem={({ item }) => <MHMoviesCard movie={item} />}
                         keyExtractor={(item) => item.movie_id.toString()}
                         numColumns={2}
                         style={styles.container}
