@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { ScrollView, ImageBackground, View, Share } from 'react-native';
-import { Card, Text, IconButton, Button } from 'react-native-paper';
+import { Card, Text, IconButton } from 'react-native-paper';
 import { colors } from '../../../utils/colors';
 import { styles } from './styles';
 import useFavorites from '../../../hooks/useFavorites';
+import MHButton from '../../MHButton';
 
 interface Movie {
     movie_id: number;
@@ -82,8 +83,7 @@ const MoviesDetailsCard: React.FC<MovieCardProps> = ({ movie, onBackPress }) => 
                         </Text>
                     </View>
 
-                    <Button
-                        mode="contained"
+                    <MHButton
                         icon={isFavorite(movie.movie_id) ? "heart-off" : "heart"}
                         onPress={handleFavoritePress}
                         style={styles.watchButton}
@@ -91,25 +91,23 @@ const MoviesDetailsCard: React.FC<MovieCardProps> = ({ movie, onBackPress }) => 
                         disabled={loading}
                     >
                         {isFavorite(movie.movie_id) ? 'Favorilerden Çıkar' : 'Favorilere Ekle'}
-                    </Button>
+                    </MHButton>
 
-                    <Button
-                        mode="contained"
+                    <MHButton
                         icon="movie"
                         onPress={() => { }}
                         style={styles.watchButton}
                     >
                         Şimdi İzle
-                    </Button>
+                    </MHButton>
 
-                    <Button
-                        mode="contained"
+                    <MHButton
                         icon="share-variant"
                         onPress={handleShare}
                         style={styles.watchButton}
                     >
                         Paylaş
-                    </Button>
+                    </MHButton>
 
                 </Card.Content>
             </Card>

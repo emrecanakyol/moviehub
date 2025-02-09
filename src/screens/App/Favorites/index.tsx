@@ -5,6 +5,7 @@ import useFavorites from '../../../hooks/useFavorites';
 import { colors } from '../../../utils/colors';
 import { styles } from './styles';
 import { useFocusEffect } from '@react-navigation/native';
+import MHButton from '../../../components/MHButton';
 
 const Favorites = () => {
     const { favorites, toggleFavorite, loading, loadFavorites } = useFavorites();
@@ -30,8 +31,7 @@ const Favorites = () => {
                     source={{ uri: item.poster_path }}
                     style={styles.poster}
                 />
-                <Button
-                    mode="contained"
+                <MHButton
                     icon="heart-off"
                     onPress={() => toggleFavorite(item)}
                     style={styles.removeButton}
@@ -39,7 +39,7 @@ const Favorites = () => {
                     disabled={loading}
                 >
                     Kaldır
-                </Button>
+                </MHButton>
             </Card.Content>
         </Card>
     );

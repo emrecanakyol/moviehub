@@ -64,9 +64,11 @@ export const styles = StyleSheet.create({
     voteAverage: {
         fontSize: responsive(16),
         color: colors.WHITE_COLOR,
+        marginBottom: responsive(20),
     },
     watchButton: {
-        marginTop: responsive(20),
         backgroundColor: colors.RED_COLOR,
+        width: responsive(350),
+        borderRadius: responsive(20),
     },
 });
