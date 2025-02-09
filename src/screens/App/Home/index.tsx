@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../../../store/store';
-import { fetchMovies, setCurrentPage } from '../../../store/slice/moviesSlice';
+import { fetchMovies, setCurrentPage, setRefreshing } from '../../../store/slice/moviesSlice';
 import AllMovies from './components/AllMovies';
 
 interface RootState {
@@ -10,6 +10,7 @@ interface RootState {
         loading: boolean;
         hasNextPage: boolean;
         currentPage: number;
+        refreshing: boolean;
     };
 }
 
@@ -21,10 +22,12 @@ interface Movie {
 
 const Index: React.FC = () => {
     const dispatch = useDispatch<AppDispatch>();
-    const { movies, loading, hasNextPage, currentPage } = useSelector((state: RootState) => state.movies);
+    const { movies, loading, hasNextPage, currentPage, refreshing } = useSelector(
+        (state: RootState) => state.movies
+    );
 
     const loadMovies = () => {
-        if (hasNextPage && !loading) {
+        if (!loading) {
             dispatch(fetchMovies(currentPage));
         }
     };
@@ -35,9 +38,21 @@ const Index: React.FC = () => {
         }
     };
 
+    const handleRefresh = () => {
+        dispatch(setRefreshing(true));
+        dispatch(setCurrentPage(1));
+        dispatch(fetchMovies(1));
+    };
+
     useEffect(() => {
         loadMovies();
     }, [currentPage]);
+
+    useEffect(() => {
+        if (refreshing) {
+            dispatch(setRefreshing(false));
+        }
+    }, [refreshing, dispatch]);
 
     return (
         <AllMovies
@@ -45,6 +60,9 @@ const Index: React.FC = () => {
             loading={loading}
             hasNextPage={hasNextPage}
             loadMoreMovies={loadMoreMovies}
+            loadMovies={loadMovies}
+            refreshing={refreshing}
+            handleRefresh={handleRefresh}
         />
     );
 };

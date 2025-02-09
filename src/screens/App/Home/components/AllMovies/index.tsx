@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { View, FlatList, ActivityIndicator } from 'react-native';
 import MHTitle from '../../../../../components/MHTitle';
 import MHMoviesCard from '../../../../../components/Cards/MHMoviesCard';
@@ -20,18 +20,23 @@ interface AllMoviesProps {
     loading: boolean;
     hasNextPage: boolean;
     loadMoreMovies: () => void;
+    loadMovies: () => void;
+    refreshing: boolean;
+    handleRefresh: () => void;
 }
 
-const AllMovies: React.FC<AllMoviesProps> = ({ movies, loading, hasNextPage, loadMoreMovies }) => {
+const AllMovies: React.FC<AllMoviesProps> = ({ movies, loading, hasNextPage, loadMoreMovies, loadMovies, refreshing, handleRefresh }) => {
     const navigation = useNavigation<any>();
 
     const handleIcon = () => {
         navigation.navigate(MOVIE_LIST, { movies, navigation });
-    }
+    };
 
     return (
         <>
-            {!movies ? (<MHLoading />) : (
+            {!movies ? (
+                <MHLoading />
+            ) : (
                 <FlatList
                     ListHeaderComponent={
                         <MHTitle
@@ -54,6 +59,8 @@ const AllMovies: React.FC<AllMoviesProps> = ({ movies, loading, hasNextPage, loa
                             </View>
                         ) : null
                     }
+                    refreshing={refreshing}
+                    onRefresh={handleRefresh}
                 />
             )}
         </>

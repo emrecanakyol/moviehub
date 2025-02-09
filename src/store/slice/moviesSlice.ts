@@ -1,4 +1,3 @@
-
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { GetMovies } from '../../api';
 
@@ -15,6 +14,7 @@ interface MoviesState {
     loading: boolean;
     hasNextPage: boolean;
     currentPage: number;
+    refreshing: boolean;
 }
 
 const initialState: MoviesState = {
@@ -22,6 +22,7 @@ const initialState: MoviesState = {
     loading: false,
     hasNextPage: true,
     currentPage: 1,
+    refreshing: false,
 };
 
 export const fetchMovies = createAsyncThunk(
@@ -39,6 +40,12 @@ const moviesSlice = createSlice({
         setCurrentPage(state, action: PayloadAction<number>) {
             state.currentPage = action.payload;
         },
+        setRefreshing(state, action: PayloadAction<boolean>) {
+            state.refreshing = action.payload;
+        },
+        resetMovies(state) {
+            state.movies = [];
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -47,14 +54,20 @@ const moviesSlice = createSlice({
             })
             .addCase(fetchMovies.fulfilled, (state, action) => {
                 state.loading = false;
-                state.movies = [...state.movies, ...action.payload.data];
+                if (state.currentPage === 1) {
+                    state.movies = action.payload.data;
+                } else {
+                    state.movies = [...state.movies, ...action.payload.data];
+                }
                 state.hasNextPage = action.payload.links.next_page_url !== null;
+                state.refreshing = false;
             })
             .addCase(fetchMovies.rejected, (state) => {
                 state.loading = false;
+                state.refreshing = false;
             });
     },
 });
 
-export const { setCurrentPage } = moviesSlice.actions;
+export const { setCurrentPage, setRefreshing, resetMovies } = moviesSlice.actions;
 export default moviesSlice.reducer;
