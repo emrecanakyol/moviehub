@@ -5,6 +5,8 @@ import MHMoviesCard from '../../../../../components/Cards/MHMoviesCard';
 import { styles } from './styles';
 import MHButton from '../../../../../components/MHButton';
 import MHLoading from '../../../../../components/MHLoading';
+import { MOVIE_LIST } from '../../../../../navigators/Stack';
+import { useNavigation } from '@react-navigation/native';
 
 interface Movie {
     movie_id: number;
@@ -20,6 +22,11 @@ interface AllMoviesProps {
 }
 
 const AllMovies: React.FC<AllMoviesProps> = ({ movies, loading, hasNextPage, loadMoreMovies }) => {
+    const navigation = useNavigation<any>();
+
+    const handleIcon = () => {
+        navigation.navigate(MOVIE_LIST, { movies, navigation });
+    }
 
     return (
         <>
@@ -28,6 +35,7 @@ const AllMovies: React.FC<AllMoviesProps> = ({ movies, loading, hasNextPage, loa
                     <MHTitle
                         title="Filmleri Keşfet"
                         icon="chevron-right"
+                        onIconPress={handleIcon}
                     />
                     <FlatList
                         data={movies}
