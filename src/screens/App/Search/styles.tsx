@@ -19,10 +19,10 @@ export const styles = StyleSheet.create({
     },
     card: {
         marginBottom: 10,
-        backgroundColor: '#222', // Kartın arka planını koyu yapmak için
+        backgroundColor: '#222',
     },
     cardContent: {
-        flexDirection: 'row', // Yatay düzen
+        flexDirection: 'row',
         alignItems: 'center',
         padding: 10,
     },
@@ -33,6 +33,6 @@ export const styles = StyleSheet.create({
         marginRight: 10,
     },
     movieTitle: {
-        color: '#fff', // Başlık rengini beyaz yaptık
+        color: '#fff',
     },
 });

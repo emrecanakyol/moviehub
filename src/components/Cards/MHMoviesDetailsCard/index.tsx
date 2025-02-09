@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ScrollView, ImageBackground, View } from 'react-native';
-import { Card, Text, IconButton, Button } from 'react-native-paper';
+import { Card, Text, IconButton, Button, ActivityIndicator } from 'react-native-paper';
 import { colors } from '../../../utils/colors';
 import { styles } from './styles';
+import useFavorites from '../../../hooks/useFavorites';
 
 interface Movie {
     movie_id: number;
@@ -22,7 +23,18 @@ interface MovieCardProps {
 }
 
 const MoviesDetailsCard: React.FC<MovieCardProps> = ({ movie, onBackPress }) => {
+    const [loading, setLoading] = useState(false);
+    const { toggleFavorite, isFavorite } = useFavorites();
     const formattedDate = new Date(movie.release_date).toLocaleDateString();
+
+    const handleFavoritePress = async () => {
+        setLoading(true);
+        try {
+            await toggleFavorite(movie);
+        } finally {
+            setLoading(false);
+        }
+    };
 
     return (
         <ScrollView contentContainerStyle={styles.container}>
@@ -53,7 +65,7 @@ const MoviesDetailsCard: React.FC<MovieCardProps> = ({ movie, onBackPress }) => 
                     </Text>
                     <View style={styles.detailsRow}>
                         <Text variant="bodyLarge" style={styles.popularity}>
-                            Popularity: {movie.popularity.toFixed(2)}
+                            Popülerlik: {movie.popularity.toFixed(2)}
                         </Text>
                         <Text variant="bodyLarge" style={styles.voteAverage}>
                             Rating: {movie.vote_average} ({movie.vote_count} votes)
@@ -62,11 +74,22 @@ const MoviesDetailsCard: React.FC<MovieCardProps> = ({ movie, onBackPress }) => 
 
                     <Button
                         mode="contained"
+                        icon={isFavorite(movie.movie_id) ? "heart-off" : "heart"}
+                        onPress={handleFavoritePress}
+                        style={styles.watchButton}
+                        loading={loading}
+                        disabled={loading}
+                    >
+                        {isFavorite(movie.movie_id) ? 'Favorilerden Çıkar' : 'Favorilere Ekle'}
+                    </Button>
+
+                    <Button
+                        mode="contained"
                         icon="movie"
                         onPress={() => { }}
                         style={styles.watchButton}
                     >
-                        Watch Now
+                        Şimdi İzle
                     </Button>
                 </Card.Content>
             </Card>

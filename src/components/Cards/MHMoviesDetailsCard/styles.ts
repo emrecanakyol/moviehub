@@ -10,7 +10,6 @@ export const styles = StyleSheet.create({
     backdrop: {
         width: '100%',
         height: responsive(600),
-        justifyContent: 'flex-end',
     },
     backdropImage: {
         borderBottomLeftRadius: responsive(25),

@@ -18,7 +18,7 @@ const SearchScreen = () => {
         <Card style={styles.card}>
             <View style={styles.cardContent}>
                 <Image
-                    source={{ uri: `https://image.tmdb.org/t/p/w200${item.poster_path}` }}
+                    source={{ uri: item.poster_path }}
                     style={styles.poster}
                 />
                 <Card.Content>
