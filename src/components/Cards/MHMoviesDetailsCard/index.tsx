@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { ScrollView, ImageBackground, View } from 'react-native';
-import { Card, Text, IconButton, Button, ActivityIndicator } from 'react-native-paper';
+import { ScrollView, ImageBackground, View, Share } from 'react-native';
+import { Card, Text, IconButton, Button } from 'react-native-paper';
 import { colors } from '../../../utils/colors';
 import { styles } from './styles';
 import useFavorites from '../../../hooks/useFavorites';
@@ -33,6 +33,16 @@ const MoviesDetailsCard: React.FC<MovieCardProps> = ({ movie, onBackPress }) => 
             await toggleFavorite(movie);
         } finally {
             setLoading(false);
+        }
+    };
+
+    const handleShare = async () => {
+        try {
+            await Share.share({
+                message: `🎬 ${movie.original_title}\n\n📅 Yayın Tarihi: ${formattedDate}\n⭐ Puan: ${movie.vote_average}/10\n📝 Açıklama: ${movie.overview}`,
+            });
+        } catch (error) {
+            console.log('Paylaşım başarısız:', error);
         }
     };
 
@@ -91,6 +101,16 @@ const MoviesDetailsCard: React.FC<MovieCardProps> = ({ movie, onBackPress }) => 
                     >
                         Şimdi İzle
                     </Button>
+
+                    <Button
+                        mode="contained"
+                        icon="share-variant"
+                        onPress={handleShare}
+                        style={styles.watchButton}
+                    >
+                        Paylaş
+                    </Button>
+
                 </Card.Content>
             </Card>
         </ScrollView>
