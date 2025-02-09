@@ -4,7 +4,7 @@ import useFavorites from '../../../hooks/useFavorites';
 import { colors } from '../../../utils/colors';
 import { useFocusEffect } from '@react-navigation/native';
 import { styles } from './style';
-import FavoritesCard from './components/FavoritesCard';
+import MHFavoritesCard from '../../../components/Cards/MHFavoritesCard';
 
 const Favorites = () => {
     const { favorites, toggleFavorite, loading, loadFavorites } = useFavorites();
@@ -23,7 +23,7 @@ const Favorites = () => {
     );
 
     const renderItem = ({ item }: any) => (
-        <FavoritesCard
+        <MHFavoritesCard
             item={item}
             onRemove={() => toggleFavorite(item)}
             loading={loading}

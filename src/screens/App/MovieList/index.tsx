@@ -1,11 +1,11 @@
 import React from 'react';
 import { FlatList, View } from 'react-native';
 import { useRoute } from '@react-navigation/native';
-import { Card, Title, Paragraph, Text, IconButton } from 'react-native-paper';
-import styles from './styles';
-import { colors } from '../../../utils/colors';
-import MHButton from '../../../components/MHButton';
+import { IconButton } from 'react-native-paper';
 import { MOVIES_DETAILS } from '../../../navigators/Stack';
+import { colors } from '../../../utils/colors';
+import styles from './styles';
+import MHMoviesListCard from '../../../components/Cards/MHMoviesListCard';
 
 interface Movie {
     movie_id: number;
@@ -24,33 +24,12 @@ const MovieList: React.FC = () => {
         navigation.goBack();
     };
 
-    const truncateOverview = (overview: string) => {
-        const words = overview.split(' ');
-        if (words.length > 15) {
-            return words.slice(0, 15).join(' ') + '...';
-        }
-        return overview;
-    };
-
     const navigateToDetails = (movie: Movie) => {
         navigation.navigate(MOVIES_DETAILS, { movie });
     };
 
-
     const renderMovieItem = ({ item }: { item: Movie }) => (
-        <Card style={styles.card}>
-            <View style={styles.cardContent}>
-                <Card.Cover source={{ uri: item.poster_path }} style={styles.cardCover} />
-
-                <View style={styles.textContent}>
-                    <Title style={styles.title}>{item.original_title}</Title>
-                    <Text style={styles.yearText}>{item.release_date}</Text>
-                    <Text style={styles.ratingText}>Rating: {item.vote_average}</Text>
-                    <Paragraph style={styles.overviewText}>{truncateOverview(item.overview)}</Paragraph>
-                    <MHButton onPress={() => navigateToDetails(item)} align="flex-start">Detay</MHButton>
-                </View>
-            </View>
-        </Card>
+        <MHMoviesListCard item={item} onPress={() => navigateToDetails(item)} />
     );
 
     return (

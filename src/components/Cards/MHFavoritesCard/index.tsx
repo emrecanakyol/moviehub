@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Text, Image } from 'react-native';
 import { Card } from 'react-native-paper';
-import MHButton from '../../../../../components/MHButton';
 import { styles } from './styles';
+import MHButton from '../../MHButton';
 
 interface FavoritesCardProps {
     item: any;

@@ -17,4 +17,22 @@ export const styles = StyleSheet.create({
     loader: {
         marginTop: 20,
     },
+    card: {
+        marginBottom: 10,
+        backgroundColor: '#222',
+    },
+    cardContent: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        padding: 10,
+    },
+    poster: {
+        width: 50,
+        height: 75,
+        borderRadius: 5,
+        marginRight: 10,
+    },
+    movieTitle: {
+        color: '#fff',
+    },
 });

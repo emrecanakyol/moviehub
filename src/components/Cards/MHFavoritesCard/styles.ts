@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
-import { responsive } from '../../../../../utils/responsive/responsive';
-import { colors } from '../../../../../utils/colors';
+import { responsive } from '../../../utils/responsive/responsive';
+import { colors } from '../../../utils/colors';
 
 export const styles = StyleSheet.create({
     container: {
