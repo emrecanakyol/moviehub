@@ -31,29 +31,29 @@ const AllMovies: React.FC<AllMoviesProps> = ({ movies, loading, hasNextPage, loa
     return (
         <>
             {loading ? (<MHLoading />) : (
-                <>
-                    <MHTitle
-                        title="Filmleri Keşfet"
-                        icon="chevron-right"
-                        onIconPress={handleIcon}
-                    />
-                    <FlatList
-                        data={movies}
-                        renderItem={({ item }) => <MHMoviesCard movie={item} />}
-                        keyExtractor={(item) => item.movie_id.toString()}
-                        numColumns={2}
-                        style={styles.container}
-                        ListFooterComponent={
-                            loading ? (
-                                <MHLoading />
-                            ) : hasNextPage && loading ? (
-                                <View style={styles.btnContainer}>
-                                    <MHButton onPress={loadMoreMovies}>Daha Fazla</MHButton>
-                                </View>
-                            ) : null
-                        }
-                    />
-                </>
+                <FlatList
+                    ListHeaderComponent={
+                        <MHTitle
+                            title="Filmleri Keşfet"
+                            icon="chevron-right"
+                            onIconPress={handleIcon}
+                        />
+                    }
+                    data={movies}
+                    renderItem={({ item }) => <MHMoviesCard movie={item} />}
+                    keyExtractor={(item) => item.movie_id.toString()}
+                    numColumns={2}
+                    style={styles.container}
+                    ListFooterComponent={
+                        loading ? (
+                            <MHLoading />
+                        ) : hasNextPage && loading ? (
+                            <View style={styles.btnContainer}>
+                                <MHButton onPress={loadMoreMovies}>Daha Fazla</MHButton>
+                            </View>
+                        ) : null
+                    }
+                />
             )}
         </>
     );
