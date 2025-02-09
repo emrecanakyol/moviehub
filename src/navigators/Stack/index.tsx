@@ -9,6 +9,7 @@ import Search from '../../screens/App/Search';
 import Profile from '../../screens/App/Profile';
 import BottomTabs from '../BottomTabs';
 import { NavigationContainer } from '@react-navigation/native';
+import MovieDetails from '../../screens/App/Home/components/MoviesDetails';
 
 export const BOTTOM_TABS = "BottomTabs";
 export const ONBOARDINGONE = "OnBoardingOne";
@@ -18,6 +19,7 @@ export const HOME = "Home";
 export const FAVORITES = "Favorites";
 export const SEARCH = "Search";
 export const PROFILE = "Profile";
+export const MOVIES_DETAILS = "MovieDetails";
 
 const Stack = createStackNavigator();
 
@@ -37,6 +39,7 @@ const StackNavigator = () => {
                 <Stack.Screen name={FAVORITES} component={Favorites} />
                 <Stack.Screen name={SEARCH} component={Search} />
                 <Stack.Screen name={PROFILE} component={Profile} />
+                <Stack.Screen name={MOVIES_DETAILS} component={MovieDetails} />
             </Stack.Navigator>
         </NavigationContainer>
     )
