@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, ActivityIndicator, StyleSheet } from 'react-native';
 import { colors } from '../../utils/colors';
+import { styles } from './style';
 
 const CustomLoading: React.FC = () => {
     return (
@@ -9,14 +10,5 @@ const CustomLoading: React.FC = () => {
         </View>
     );
 };
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: colors.MAIN_COLOR
-    },
-});
 
 export default CustomLoading;

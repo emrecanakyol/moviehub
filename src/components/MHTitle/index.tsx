@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Appbar, IconButton } from 'react-native-paper';
 import { colors } from '../../utils/colors';
+import { styles } from './styles';
 
 interface CustomTitleProps {
     title: string;
@@ -25,16 +26,4 @@ const CustomTitle: React.FC<CustomTitleProps> = ({ title, icon, onIconPress, sty
         </Appbar.Header>
     );
 };
-
-const styles = StyleSheet.create({
-    container: {
-        backgroundColor: colors.MAIN_COLOR,
-    },
-    title: {
-        fontSize: 18,
-        fontWeight: "400",
-        color: colors.WHITE_COLOR,
-    },
-});
-
 export default CustomTitle;
